@@ -1,0 +1,23 @@
+{
+  "name": "serverless-testing-automation",
+  "version": "1.0.0",
+  "dependencies": {
+    "aws-sdk": "^2.92.0",
+    "serverless-package-includes": "github:dittto/serverless-package-includes",
+    "serverless-plugin-scripts": "^1.0.2",
+    "serverless-snyk": "^1.2.0",
+    "serverless-step-functions": "^1.1.0"
+  },
+  "devDependencies": {
+    "serverless-aws-documentation": "^0.7.0",
+    "serverless-mocha-plugin": "^1.5.0",
+    "serverless-offline-scheduler": "^0.3.2",
+    "serverless-plugin-custom-domain": "^1.1.0",
+    "serverless-plugin-encrypted": "^1.0.3",
+    "serverless-plugin-notification": "^1.2.1",
+    "serverless-plugin-warmup": "^3.0.5-rc.1"
+  },
+  "scripts": {
+    "test": "serverless invoke --function env --log RequestResponse"
+  }
+}

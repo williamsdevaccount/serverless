@@ -1,0 +1,218 @@
+{
+  "service": {
+    "service": "testing-service",
+    "serviceObject": {
+      "name": "testing-service"
+    },
+    "provider": {
+      "stage": "dev",
+      "region": "us-east-1",
+      "variableSyntax": "\\${([ :a-zA-Z0-9._,\\-\\/\\(\\)]+?)}",
+      "name": "aws",
+      "runtime": "nodejs6.10",
+      "memorySize": 128,
+      "environment": {
+        "ACCESS_KEY": "AKIAI6ZQ4DDPWRTBQYIA",
+        "ACCESS_SECRET": "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"
+      },
+      "tracing": true,
+      "timeout": 30,
+      "profile": "dev",
+      "tag": "testing",
+      "versionFunctions": true,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket"
+          },
+          "EnvLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/testing-service-dev-env"
+            }
+          },
+          "IamRoleLambdaExecution": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": [
+                        "lambda.amazonaws.com"
+                      ]
+                    },
+                    "Action": [
+                      "sts:AssumeRole"
+                    ]
+                  }
+                ]
+              },
+              "Policies": [
+                {
+                  "PolicyName": {
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "dev",
+                        "testing-service",
+                        "lambda"
+                      ]
+                    ]
+                  },
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:CreateLogStream"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/testing-service-dev-env:*"
+                          }
+                        ]
+                      },
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:PutLogEvents"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/testing-service-dev-env:*:*"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "Path": "/",
+              "RoleName": {
+                "Fn::Join": [
+                  "-",
+                  [
+                    "testing-service",
+                    "dev",
+                    "us-east-1",
+                    "lambdaRole"
+                  ]
+                ]
+              }
+            }
+          },
+          "EnvLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/testing-service/dev/1501312170853-2017-07-29T07:09:30.853Z/testing-service.zip"
+              },
+              "FunctionName": "testing-service-dev-env",
+              "Handler": "functions/env.handler",
+              "MemorySize": 128,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs6.10",
+              "Timeout": 120,
+              "Description": "used for testing environment variables",
+              "Environment": {
+                "Variables": {
+                  "ACCESS_KEY": "AKIAI6ZQ4DDPWRTBQYIA",
+                  "ACCESS_SECRET": "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"
+                }
+              }
+            },
+            "DependsOn": [
+              "EnvLogGroup",
+              "IamRoleLambdaExecution"
+            ]
+          },
+          "EnvLambdaVersionem9mWeFsJY1dSNCMUYXCcgQ8gW8w92S3DEy1YNwrK8": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "EnvLambdaFunction"
+              },
+              "CodeSha256": "em9mW/eFsJY1dSNCMUYXCcgQ8gW8w92S3DEy1YNwrK8=",
+              "Description": "used for testing environment variables"
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          },
+          "EnvLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "EnvLambdaVersionem9mWeFsJY1dSNCMUYXCcgQ8gW8w92S3DEy1YNwrK8"
+            }
+          }
+        }
+      },
+      "coreCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket"
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          }
+        }
+      },
+      "vpc": {}
+    },
+    "custom": {
+      "stage": "dev",
+      "kmsKeyId": "dev-testing-service",
+      "encrypted": {}
+    },
+    "plugins": [
+      "serverless-plugin-encrypted"
+    ],
+    "functions": {
+      "env": {
+        "handler": "functions/env.handler",
+        "description": "used for testing environment variables",
+        "timeout": 120,
+        "profile": "dev",
+        "environment": {
+          "ACCESS_KEY": "AKIAI6ZQ4DDPWRTBQYIA",
+          "ACCESS_SECRET": "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"
+        },
+        "events": [],
+        "name": "testing-service-dev-env",
+        "awsKmsKeyArn": "arn:aws:kms:us-east-1:162385740465:key/67e9e23b-5b9b-4b51-92cd-265430598bd1",
+        "package": {},
+        "vpc": {}
+      }
+    },
+    "artifact": "/Users/willstowers/serverless/serverless-testing-automation/.serverless/testing-service.zip"
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/testing-service/dev/1501312170853-2017-07-29T07:09:30.853Z",
+    "artifact": "testing-service.zip"
+  }
+}

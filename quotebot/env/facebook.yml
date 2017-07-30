@@ -1,0 +1,23 @@
+
+default_env: &default_env
+  APP_ID : '181195755745795'
+  APP_SECRET : 'EAACkyZByn8gMBAIZAzUcHGbtixL3wsqTxkHnIQcKZBShfPipcYtt6OfM3HW7Wg1rLXWU2SuvZBugg2ZBdQ2WXfkCiPCZAaZBvJL9vQNPHCKBkedbmnM4HN3X5sfk7bUafCEYrDsdN9KDf6v79Dp2IJRVSs2Fe70gX7RVm4gnHq1jwZDZD'
+  ACCESS_KEY: 'AKIAI6ZQ4DDPWRTBQYIA'
+  ACCESS_SECRET : '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'
+  IS_LOCAL: false
+  LOG_LEVEL : 'info'
+
+local:
+  <<: *default_env
+  LOG_LEVEL : 'debug'
+  IS_LOCAL: true
+
+dev:
+  <<: *default_env
+  LOG_LEVEL : 'debug'
+
+stage:
+   <<: *default_env
+
+prod:
+   <<: *default_env

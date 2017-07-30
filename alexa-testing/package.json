@@ -1,0 +1,19 @@
+{
+  "name": "serverless-testing-automation",
+  "version": "1.0.0",
+  "dependencies": {
+    "aws-sdk": "^2.92.0",
+    "serverless-package-includes": "github:dittto/serverless-package-includes",
+    "serverless-plugin-scripts": "^1.0.2"
+  },
+  "devDependencies": {
+    "serverless-local-alexa-server": "^0.2.0",
+    "serverless-plugin-encrypted": "^1.0.3",
+    "serverless-eslint-plugin" : "*",
+    "serverless-plugin-existing-cloudwatch-rule" : "*"
+  },
+  "scripts": {
+    "test": "serverless invoke --function env --log RequestResponse",
+    "start" : "serverless local-alexa-server"
+  }
+}
