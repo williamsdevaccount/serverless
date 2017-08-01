@@ -4,14 +4,7 @@ const axios = require('axios');
 
 // Your first function handler
 module.exports.webhook = (event, context, callback) => {
-  if (event.method === 'GET') {
-    // facebook app verification
-    if (event.query['hub.verify_token'] === 'STRONGTOKEN' && event.query['hub.challenge']) {
-      return callback(null, parseInt(event.query['hub.challenge']));
-    } else {
-      return callback('Invalid token');
-    }
-  }
+
 
   if (event.method === 'POST') {
     event.body.entry.map((entry) => {
