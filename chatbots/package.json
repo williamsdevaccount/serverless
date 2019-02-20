@@ -11,7 +11,7 @@
   "author": "William Stowers",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^2.0.0",
+    "dotenv": "^6.2.0",
     "moment": "^2.15.1",
     "node-wit-legacy": "git+https://github.com/laardee/node-wit-legacy.git",
     "request": "^2.75.0",
@@ -19,10 +19,10 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.6.3",
-    "copy-webpack-plugin": "^3.0.1",
+    "copy-webpack-plugin": "^4.6.0",
     "json-loader": "^0.5.4",
     "serverless-mocha-plugin": "^1.0.3",
-    "serverless-webpack": "^1.0.0-rc.2"
+    "serverless-webpack": "^5.2.0"
   },
   "scripts": {
     "test": "SLS_DEBUG=true serverless invoke test"
