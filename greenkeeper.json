@@ -1,0 +1,14 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "alexa-testing/package.json",
+        "bots-testing/package.json",
+        "chatbots/package.json",
+        "quotebot/package.json",
+        "serverless-messenger-boilerplate/package.json",
+        "serverless-testing-automation/package.json"
+      ]
+    }
+  }
+}
