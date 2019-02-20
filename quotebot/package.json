@@ -8,11 +8,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.14.0"
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "serverless-plugin-crypt": "0.0.1",
     "serverless-plugin-encrypted": "^1.0.3",
-    "serverless-plugin-tracing": "^1.0.6"
+    "serverless-plugin-tracing": "^2.0.0"
   }
 }
