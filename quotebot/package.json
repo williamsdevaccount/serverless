@@ -8,7 +8,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.14.0"
+    "axios": "^1.6.4"
   },
   "devDependencies": {
     "serverless-plugin-crypt": "0.0.1",
